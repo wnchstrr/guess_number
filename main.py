@@ -1,16 +1,52 @@
-# This is a sample Python script.
+import random
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+MIN_VAL = 1
+MAX_VAL = 100
 
 
-# Press the green button in the gutter to run the script.
+def get_random_number(min_val, max_val):
+    return random.randint(min_val, max_val)
+
+
+def get_player_guess(min_val, max_val):
+    while True:
+        number = input('Enter a number: ')
+        if number.isdigit():
+            number = int(number)
+            if min_val <= number <= max_val:
+                return number
+            else:
+                print('Out of range')
+        else:
+            print('Error! Try again! Only numbers')
+
+
+def play_game():
+    count = 0
+    pc_number = get_random_number(MIN_VAL, MAX_VAL)
+    while True:
+        user_number = get_player_guess(MIN_VAL, MAX_VAL)
+        count += 1
+        if user_number < pc_number:
+            print('The number must be greater')
+        elif user_number > pc_number:
+            print('Nice try! But the number must be less')
+        else:
+            print('You win!')
+            print(f'Your number of attempts {count}')
+            break
+
+
+def main():
+    while True:
+        play_game()
+        answer = input('Do you wanna play again? y - yes, n - no: ').lower()
+        if answer == 'y':
+            print("Let's gooo")
+        elif answer == 'n':
+            print('It was fun! Thank you for the game!')
+            break
+
+
 if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    main()
