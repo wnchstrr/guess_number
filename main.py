@@ -10,15 +10,15 @@ def get_random_number(min_val, max_val):
 
 def get_player_guess(min_val, max_val):
     while True:
-        number = input('Enter a number: ')
+        number = input("Guess a number (1–100): ")
         if number.isdigit():
             number = int(number)
             if min_val <= number <= max_val:
                 return number
             else:
-                print('Out of range')
+                print("Please enter a number between 1 and 100.")
         else:
-            print('Error! Try again! Only numbers')
+            print("Invalid input. Enter a number.")
 
 
 def play_game():
@@ -28,23 +28,22 @@ def play_game():
         user_number = get_player_guess(MIN_VAL, MAX_VAL)
         count += 1
         if user_number < pc_number:
-            print('The number must be greater')
+            print("Too low. Go higher.")
         elif user_number > pc_number:
-            print('Nice try! But the number must be less')
+            print("Too high. Go lower.")
         else:
-            print('You win!')
-            print(f'Your number of attempts {count}')
+            print(f"You got it in {count} tries!")
             break
 
 
 def main():
     while True:
         play_game()
-        answer = input('Do you wanna play again? y - yes, n - no: ').lower()
+        answer = input("Play again? (y / n): ").lower()
         if answer == 'y':
-            print("Let's gooo")
+            print("Let's go.")
         elif answer == 'n':
-            print('It was fun! Thank you for the game!')
+            print("Good game. Come back anytime.")
             break
 
 
